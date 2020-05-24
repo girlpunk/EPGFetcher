@@ -31,7 +31,7 @@ namespace EPGFetcher {
             var output = new Xmltv.Tv();
 
             Console.WriteLine("Loading Results");
-            List<InputData.Rootobject> results = (await (await channels.LogLINQ("channel", c=>c)
+            List<InputData.Rootobject> results = (await (await channels.LogLINQ("channel", c=>c.ToString())
                                                                        .Select(channelId => httpClient.GetAsync($"https://broadcastservices.imdserve.com/broadcast/v1/schedule?startdate={startDate}&hours={hours}&totalwidthunits=1000&channels={channelId}"))
                                                                        .WhenAll())
                                                        .LogLINQ("response", r=>r.HttpStatusCode.ToString())
