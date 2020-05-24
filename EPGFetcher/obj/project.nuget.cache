@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "qRrZEuHuhm1NQEK8aKGDkcGZblT5/MmGn6gdF1rFd8xfq15EMrVW7D7OMUOjpJRRA8suS7v91weQphdAY147mg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Jacob\\source\\repos\\EPGFetcher\\EPGFetcher\\EPGFetcher.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Jacob\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

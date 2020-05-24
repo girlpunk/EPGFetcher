@@ -1,0 +1,15 @@
+C:\Users\Jacob\source\repos\EPGFetcher\EPGFetcher\bin\Debug\netcoreapp3.1\EPGFetcher.exe
+C:\Users\Jacob\source\repos\EPGFetcher\EPGFetcher\bin\Debug\netcoreapp3.1\EPGFetcher.deps.json
+C:\Users\Jacob\source\repos\EPGFetcher\EPGFetcher\bin\Debug\netcoreapp3.1\EPGFetcher.runtimeconfig.json
+C:\Users\Jacob\source\repos\EPGFetcher\EPGFetcher\bin\Debug\netcoreapp3.1\EPGFetcher.runtimeconfig.dev.json
+C:\Users\Jacob\source\repos\EPGFetcher\EPGFetcher\bin\Debug\netcoreapp3.1\EPGFetcher.dll
+C:\Users\Jacob\source\repos\EPGFetcher\EPGFetcher\bin\Debug\netcoreapp3.1\EPGFetcher.pdb
+C:\Users\Jacob\source\repos\EPGFetcher\EPGFetcher\obj\Debug\netcoreapp3.1\EPGFetcher.csprojAssemblyReference.cache
+C:\Users\Jacob\source\repos\EPGFetcher\EPGFetcher\obj\Debug\netcoreapp3.1\EPGFetcher.AssemblyInfoInputs.cache
+C:\Users\Jacob\source\repos\EPGFetcher\EPGFetcher\obj\Debug\netcoreapp3.1\EPGFetcher.AssemblyInfo.cs
+C:\Users\Jacob\source\repos\EPGFetcher\EPGFetcher\obj\Debug\netcoreapp3.1\EPGFetcher.dll
+C:\Users\Jacob\source\repos\EPGFetcher\EPGFetcher\obj\Debug\netcoreapp3.1\EPGFetcher.pdb
+C:\Users\Jacob\source\repos\EPGFetcher\EPGFetcher\obj\Debug\netcoreapp3.1\EPGFetcher.genruntimeconfig.cache
+C:\Users\Jacob\source\repos\EPGFetcher\EPGFetcher\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\Jacob\source\repos\EPGFetcher\EPGFetcher\obj\Debug\netcoreapp3.1\EPGFetcher.csproj.CoreCompileInputs.cache
+C:\Users\Jacob\source\repos\EPGFetcher\EPGFetcher\obj\Debug\netcoreapp3.1\EPGFetcher.csproj.CopyComplete
