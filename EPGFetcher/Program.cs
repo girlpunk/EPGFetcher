@@ -32,7 +32,7 @@ namespace EPGFetcher {
 
             Console.WriteLine("Loading Results");
             List<InputData.Rootobject> results = (await (await channels.LogLINQ("channel", c=>c.ToString())
-                                                                       .Select(channelId => httpClient.GetAsync($"https://broadcastservices.imdserve.com/broadcast/v1/schedule?startdate={startDate}&hours={hours}&totalwidthunits=1000&channels={channelId}"))
+                                                                       .Select(channelId => httpClient.GetAsync($"https://broadcastservices.imdserve.com/broadcast/v1/schedule?startdate={startDate:u}&hours={hours}&totalwidthunits=1000&channels={channelId}"))
                                                                        .WhenAll())
                                                        .LogLINQ("response", r=>r.RequestMessage.RequestUri.ToString()+" returned code "+r.StatusCode.ToString())
                                                        .Where(response => response.IsSuccessStatusCode)
