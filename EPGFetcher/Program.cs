@@ -22,12 +22,15 @@ namespace EPGFetcher {
 
             //How many channels to load data for at one time
             //var ChannelBatches = 5;
-
+            
+            Console.WriteLine("Creating HTTP Client");
             var httpClient = new HttpClient();
             var startDate = DateTime.Today;
-
+            
+            Console.WriteLine("Creating Output Object");
             var output = new Xmltv.Tv();
 
+            Console.WriteLine("Loading Results");
             List<InputData.Rootobject> results = (await (await channels.Select(channelId => httpClient.GetAsync($"https://broadcastservices.imdserve.com/broadcast/v1/schedule?startdate={startDate}&hours={hours}&totalwidthunits=1000&channels={channelId}"))
                                                                        .WhenAll())
                                                        .Where(response => response.IsSuccessStatusCode)
@@ -35,14 +38,18 @@ namespace EPGFetcher {
                                                        .WhenAll())
                                                 .Select(JsonConvert.DeserializeObject<InputData.Rootobject>)
                                                 .ToList();
+            Console.WriteLine("Got "+results.Count+" results");
 
+            Console.WriteLine("Getting Channels");
             output.Channel.AddRange(results.SelectMany(rootObject => rootObject.Channels)
                                            .Select(channel => new Xmltv.TvChannel {
                                                                                       DisplayName = new List<string> {channel.DisplayName},
                                                                                       Icon = new Xmltv.TvChannelIcon {Src = channel.Image},
                                                                                       Id = channel.Id
                                                                                   }));
+            Console.WriteLine("Got "+output.Channel.Count+" channels");
 
+            Console.WriteLine("Getting Programs");
             output.Programme.AddRange(results.SelectMany(rootObject => rootObject.Channels.SelectMany(channel => channel.TvListings.Select(listing => (program: listing, channelId: channel.Id))))
                                              .Select(tvListing => new Xmltv.TvProgramme {
                                                                                             Channel = tvListing.channelId.ToString(),
@@ -56,8 +63,11 @@ namespace EPGFetcher {
                                                                                             Start = tvListing.program.StartTimeMF,
                                                                                             Stop = tvListing.program.EndTimeMF
                                                                                         }));
+            Console.WriteLine("Got "+output.Programme.Count+" programmes");
 
+            Console.WriteLine("Creating serializer");
             var serializer = new System.Xml.Serialization.XmlSerializer(typeof(Xmltv.Tv));
+            Console.WriteLine("Writing Output");
             serializer.Serialize(Console.Out, output);
         }
     }
