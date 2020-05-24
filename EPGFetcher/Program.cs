@@ -31,8 +31,10 @@ namespace EPGFetcher {
             var output = new Xmltv.Tv();
 
             Console.WriteLine("Loading Results");
-            List<InputData.Rootobject> results = (await (await channels.Select(channelId => httpClient.GetAsync($"https://broadcastservices.imdserve.com/broadcast/v1/schedule?startdate={startDate}&hours={hours}&totalwidthunits=1000&channels={channelId}"))
+            List<InputData.Rootobject> results = (await (await channels.LogLINQ("channel", c=>c)
+                                                                       .Select(channelId => httpClient.GetAsync($"https://broadcastservices.imdserve.com/broadcast/v1/schedule?startdate={startDate}&hours={hours}&totalwidthunits=1000&channels={channelId}"))
                                                                        .WhenAll())
+                                                       .LogLINQ("response", r=>r.HttpStatusCode)
                                                        .Where(response => response.IsSuccessStatusCode)
                                                        .Select(response => response.Content.ReadAsStringAsync())
                                                        .WhenAll())
@@ -74,5 +76,20 @@ namespace EPGFetcher {
 
     internal static class Extensions {
         public static async Task<IEnumerable<T>> WhenAll<T>(this IEnumerable<Task<T>> tasks) => await Task.WhenAll(tasks);
+        
+        public static IEnumerable<T> LogLINQ<T>(this IEnumerable<T> enumerable, string logName, Func<T, string> printMethod)
+        {
+            int count = 0;
+            foreach (var item in enumerable)
+            {
+                if (printMethod != null)
+                {
+                    Console.WriteLine($"{logName}|item {count} = {printMethod(item)}");
+                }
+                count++;
+                yield return item;
+            }
+            Console.WriteLine($"{logName}|count = {count}");
+        }
     }
 }
