@@ -34,7 +34,7 @@ namespace EPGFetcher {
             List<InputData.Rootobject> results = (await (await channels.LogLINQ("channel", c=>c)
                                                                        .Select(channelId => httpClient.GetAsync($"https://broadcastservices.imdserve.com/broadcast/v1/schedule?startdate={startDate}&hours={hours}&totalwidthunits=1000&channels={channelId}"))
                                                                        .WhenAll())
-                                                       .LogLINQ("response", r=>r.HttpStatusCode)
+                                                       .LogLINQ("response", r=>r.HttpStatusCode.ToString())
                                                        .Where(response => response.IsSuccessStatusCode)
                                                        .Select(response => response.Content.ReadAsStringAsync())
                                                        .WhenAll())
